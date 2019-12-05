@@ -7,10 +7,10 @@
 
 <script>
 // @ is an alias to /src
-import ValueFinder from "@/components/ValueFinder.vue";
+import ValueFinder from '@/components/ValueFinder.vue';
 
 export default {
-  name: "home",
+  name: 'home',
   components: {
     ValueFinder
   }

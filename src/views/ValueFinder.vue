@@ -57,7 +57,7 @@ export default {
   },
 
   mounted() {
-    const savedList : string | null = localStorage.getItem('value-lists');
+    const savedList: string | null = localStorage.getItem('value-lists');
 
     if (savedList) {
       this.lists = JSON.parse(savedList);
