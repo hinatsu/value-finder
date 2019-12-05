@@ -1,13 +1,24 @@
 <template>
   <div id="app">
     <div id="nav">
-      <div>Value Finder</div>
+      <div id="title">Value Finder</div>
+      <div>
+        <div>
+          
+        </div>
+      </div>
     </div>
     <router-view />
   </div>
 </template>
 
 <style lang="scss">
+html {
+  background-color: #ffeee2;
+  #title {
+    font-size: 2.5rem;
+  }
+}
 #app {
   font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
