@@ -3,7 +3,9 @@
     <div id="nav">
       <div id="title">Value Finder</div>
       <div>
-        <div></div>
+        <div>1.あなたの価値観に沿って単語を全て振り分けてみましょう。</div>
+        <div>2.最も重要な価値観を10個に絞ってみましょう。</div>
+        <div>3.絞った価値観に順位をつけてみましょう</div>
       </div>
     </div>
     <router-view />

@@ -7,16 +7,29 @@
     </div>
     <div class="row">
       <div id="important" class="col-4" v-if="lists.listImportant">
+        <span>重要な価値観</span>
         <draggable :list="lists.listImportant" group="values">
-          <span class="value-important" v-for="(value, index) in lists.listImportant" :key="index">{{ value.ja }}</span>
+          <span class="value-important" v-for="(value, index) in lists.listImportant" :key="index">
+           
+            {{ value.ja }}
+          </span>
         </draggable>
       </div>
       <div id="crutial" class="col-4" v-if="lists.listCrutial">
+        <span>最も重要な価値観</span>
         <draggable :list="lists.listCrutial" group="values">
-          <div class="value-crutial" v-for="(value, index) in lists.listCrutial" :key="index">{{ value.ja }}</div>
+          <div class="value-crutial" v-for="(value, index) in lists.listCrutial" :key="index">
+            <span class="ranking" v-if="index === 0">
+              <i class="fas fa-crown"></i>
+              
+            </span>
+            <span class="ranking" v-else>{{index + 1}}</span>
+            <span>{{ value.ja }}</span>
+          </div>
         </draggable>
       </div>
       <div id="normal" class="col-4" v-if="lists.listNormal">
+        <span>普通の価値観</span>
         <draggable :list="lists.listNormal" group="values">
           <span class="value-normal" v-for="(value, index) in lists.listNormal" :key="index">{{ value.ja }}</span>
         </draggable>
@@ -98,11 +111,18 @@ export default {
   }
 }
 
+.ranking {
+  float: left;
+  position: relative;
+}
+
 .value {
   &-cloud,
   &-crutial,
   &-important,
   &-normal {
+    margin: 5px;
+
     &:hover {
       cursor: move;
     }
