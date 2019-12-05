@@ -1,47 +1,24 @@
 <template>
-  <div>
-    <div class="col-12">
-      <draggable :list="listCloud" group="values" :key="lIndex">
-        <span
-          class="value-cloud"
-          v-for="(value, index) in listCloud"
-          :key="index"
-          >{{ value.ja }}</span
-        >
+  <div v-if="lists">
+    <div class="col-12" v-if="lists.listCloud">
+      <draggable :list="lists.listCloud" group="values">
+        <span class="value-cloud" v-for="(value, index) in lists.listCloud" :key="index">{{ value.ja }}</span>
       </draggable>
     </div>
     <div class="row">
-      <div class="col-4">
-        <draggable :list="listCrutial" group="values">
-          <div
-            class="value-crutial"
-            v-for="(value, index) in listCrutial"
-            :key="index"
-          >
-            {{ value.ja }}
-          </div>
+      <div id="crutial" class="col-4" v-if="lists.listCrutial">
+        <draggable :list="lists.listCrutial" group="values">
+          <div class="value-crutial" v-for="(value, index) in lists.listCrutial" :key="index">{{ value.ja }}</div>
         </draggable>
       </div>
-      <div class="col-4">
-        <draggable :list="listImportant" group="values">
-          <div
-            class="value-important"
-            v-for="(value, index) in listImportant"
-            :key="index"
-          >
-            {{ value.ja }}
-          </div>
+      <div id="important" class="col-4" v-if="lists.listImportant">
+        <draggable :list="lists.listImportant" group="values">
+          <div class="value-important" v-for="(value, index) in lists.listImportant" :key="index">{{ value.ja }}</div>
         </draggable>
       </div>
-      <div class="col-4">
-        <draggable :list="listNormal" group="values">
-          <div
-            class="value-normal"
-            v-for="(value, index) in listNormal"
-            :key="index"
-          >
-            {{ value.ja }}
-          </div>
+      <div id="normal" class="col-4" v-if="lists.listNormal">
+        <draggable :list="lists.listNormal" group="values">
+          <div class="value-normal" v-for="(value, index) in lists.listNormal" :key="index">{{ value.ja }}</div>
         </draggable>
       </div>
     </div>
@@ -49,8 +26,8 @@
 </template>
 
 <script lang="ts">
-import { VALUES } from "@/constants";
-const draggable = require("vuedraggable");
+import { VALUES } from '@/constants';
+const draggable = require('vuedraggable');
 
 export default {
   components: {
@@ -59,12 +36,35 @@ export default {
 
   data() {
     return {
-      listCloud: VALUES,
-      listCrutial: [],
-      listImportant: [],
-      listNormal: []
+      values: VALUES,
+      lists: {
+        listCloud: [] as any[],
+        listCrutial: [] as any[],
+        listImportant: [] as any[],
+        listNormal: [] as any[]
+      } as any
     };
   }, // data
+
+  watch: {
+    lists: {
+      // eslint-disable-next-line
+      handler: function() {
+        localStorage.setItem('value-lists', JSON.stringify(this.lists));
+      },
+      deep: true
+    }
+  },
+
+  mounted() {
+    const savedList = localStorage.getItem('value-lists');
+
+    if (savedList) {
+      this.lists = JSON.parse(savedList);
+    } else {
+      this.lists.listCloud = VALUES;
+    }
+  },
 
   methods: {} // methods
 };
@@ -77,6 +77,12 @@ export default {
   }
   display: flex;
   flex-direction: row;
+  #crutial {
+  }
+  #important {
+  }
+  #normal {
+  }
   .col-4 {
     background-color: grey;
     min-height: 400px;
