@@ -1,4 +1,4 @@
-export const VALUES = [
+export const VALUES: object[] = [
   { ja: '到達', en: 'Attainment' },
   { ja: '獲得', en: 'Acquisition' },
   { ja: '熟達', en: 'Mastery' },

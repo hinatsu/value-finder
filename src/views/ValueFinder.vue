@@ -10,7 +10,6 @@
         <span>重要な価値観</span>
         <draggable :list="lists.listImportant" group="values">
           <span class="value-important" v-for="(value, index) in lists.listImportant" :key="index">
-           
             {{ value.ja }}
           </span>
         </draggable>
@@ -21,9 +20,8 @@
           <div class="value-crutial" v-for="(value, index) in lists.listCrutial" :key="index">
             <span class="ranking" v-if="index === 0">
               <i class="fas fa-crown"></i>
-              
             </span>
-            <span class="ranking" v-else>{{index + 1}}</span>
+            <span class="ranking" v-else>{{ index + 1 }}</span>
             <span>{{ value.ja }}</span>
           </div>
         </draggable>
@@ -51,11 +49,11 @@ export default {
     return {
       values: VALUES,
       lists: {
-        listCloud: [] as any[],
-        listCrutial: [] as any[],
-        listImportant: [] as any[],
-        listNormal: [] as any[]
-      } as any
+        listCloud: [] as object[],
+        listCrutial: [] as object[],
+        listImportant: [] as object[],
+        listNormal: [] as object[]
+      } as { listCloud: object[]; listCrutial: object[]; listImportant: object[]; listNormal: object[] }
     };
   }, // data
 
